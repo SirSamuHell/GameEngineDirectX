@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="App">
+      <UniqueIdentifier>{fa12d4fb-7e92-4b59-86a6-3ea40db1dfc4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine">
+      <UniqueIdentifier>{36b7d299-d9c6-42a9-898b-812696fd685a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\WindowingSystem">
+      <UniqueIdentifier>{39e99d86-8a58-4483-a808-c16fe1685ffb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine">
+      <UniqueIdentifier>{5e92e6dc-6e4d-41e3-a565-950ed7d943b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\SwapChain">
+      <UniqueIdentifier>{676cd131-6270-41a6-ab6c-960c930be3d6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="appwindow.cpp">
+      <Filter>App</Filter>
+    </ClCompile>
+    <ClCompile Include="window.cpp">
+      <Filter>GameEngine\WindowingSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="graphicsengine.cpp">
+      <Filter>GameEngine\GraphicsEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="swapchain.cpp">
+      <Filter>GameEngine\SwapChain</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="appwindow.hpp">
+      <Filter>App</Filter>
+    </ClInclude>
+    <ClInclude Include="window.hpp">
+      <Filter>GameEngine\WindowingSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="swapchain.hpp">
+      <Filter>GameEngine\SwapChain</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="graphicsengine.hpp">
+      <Filter>GameEngine\GraphicsEngine</Filter>
+    </None>
+  </ItemGroup>
+</Project>
