@@ -1,5 +1,6 @@
 #include "graphicsengine.hpp"
 #include "swapchain.hpp"
+#include "devicecontext.hpp"
 
 bool GraphicsEngine::init()
 {
@@ -10,7 +11,9 @@ bool GraphicsEngine::init()
 	};
 	UINT num_driver_types = ARRAYSIZE(driver_types);
 
-	D3D_FEATURE_LEVEL feature_level[] = { 
+	D3D_FEATURE_LEVEL feature_level[] = {
+		D3D_FEATURE_LEVEL_12_0,
+		D3D_FEATURE_LEVEL_11_1,
 		D3D_FEATURE_LEVEL_11_0,
 		D3D_FEATURE_LEVEL_10_0,
 		D3D_FEATURE_LEVEL_9_3,
@@ -19,14 +22,16 @@ bool GraphicsEngine::init()
 	};
 
 	HRESULT res;
-
+	ID3D11DeviceContext* imm_context;
 	for (UINT driver_type_index = 0; driver_type_index < num_driver_types; driver_type_index++)
 	{
-		res = D3D11CreateDevice(nullptr, driver_types[driver_type_index], nullptr, 0, feature_level, num_driver_types, D3D11_SDK_VERSION, &m_d3d_device, &m_d3d_feature_level, &m_imm_context);
+		res = D3D11CreateDevice(nullptr, driver_types[driver_type_index], nullptr, 0, feature_level, num_driver_types, D3D11_SDK_VERSION, &m_d3d_device, &m_d3d_feature_level, &imm_context);
 		
 		if (SUCCEEDED(res))
 			break;
 	}
+
+	m_imm_device_context = new DeviceContext(imm_context);
  
 	if (FAILED(res))
 		return false;
@@ -45,7 +50,7 @@ bool GraphicsEngine::release()
 	m_dxgi_adapter->Release();
 	m_dxgi_factory->Release();
 
-	m_imm_context->Release();
+	m_imm_device_context->release();
 	m_d3d_device->Release();
 	return true;
 }
@@ -60,4 +65,9 @@ GraphicsEngine* GraphicsEngine::get()
 SwapChain* GraphicsEngine::createSwapChain()
 {
 	return new SwapChain;
+}
+
+DeviceContext* GraphicsEngine::getImmediateDeviceContext()
+{
+	return this->m_imm_device_context;
 }

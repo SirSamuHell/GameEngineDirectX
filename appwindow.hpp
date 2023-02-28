@@ -4,6 +4,7 @@
 #include "window.hpp"
 #include "graphicsengine.hpp"
 #include "swapchain.hpp"
+#include "devicecontext.hpp"
 
 class AppWindow : public Window
 {

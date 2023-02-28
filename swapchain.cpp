@@ -19,15 +19,33 @@ bool SwapChain::init(HWND hwnd, UINT width, UINT height)
 	desc.SampleDesc.Count = 1;
 	desc.SampleDesc.Quality = 0;
 	desc.Windowed = TRUE;
-
-
+ 
 	// Création de la swap chain
 	HRESULT hr = GraphicsEngine::get()->m_dxgi_factory->CreateSwapChain(device, &desc, &m_swap_chain);
 
 	if (FAILED(hr))
 		return false;
 
+	ID3D11Texture2D* buffer = nullptr;
+	hr = m_swap_chain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(&buffer));
+
+	if (FAILED(hr))
+		return false;
+
+	device->CreateRenderTargetView(buffer, nullptr, &m_rtv);
+	buffer->Release();
+
+	if (FAILED(hr))
+		return false;
+
 	return true;
+}
+
+bool SwapChain::present(bool vsync)
+{
+	m_swap_chain->Present(vsync, 0);
+
+	return false;
 }
 
 bool SwapChain::release()

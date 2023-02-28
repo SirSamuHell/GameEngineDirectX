@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="appwindow.cpp" />
+    <ClCompile Include="devicecontext.cpp" />
     <ClCompile Include="graphicsengine.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="swapchain.cpp" />
@@ -27,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="appwindow.hpp" />
+    <ClInclude Include="devicecontext.hpp" />
     <ClInclude Include="swapchain.hpp" />
     <ClInclude Include="window.hpp" />
   </ItemGroup>
